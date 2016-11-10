@@ -1,0 +1,57 @@
+//
+//  HelpToolsPrefix.pch
+//  NewCreate
+//
+//  Created by 叶慧伟 on 16/10/15.
+//  Copyright © 2016年 叶慧伟. All rights reserved.
+//
+
+#ifndef HelpToolsPrefix_pch
+#define HelpToolsPrefix_pch
+
+#import "AsyncRequestHandles.h"
+#import "CateGoryHeader.h"
+#import <Masonry.h>
+
+//自定义输出宏
+#ifdef DEBUG
+#define NSLog(FORMAT, ...) fprintf(stderr,"%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define NSLog(FORMAT, ...) nil
+#endif
+
+//RGB创建颜色
+#define RGB(r, g, b) ([UIColor colorWithRed:(r / 255.0) green:(g / 255.0) blue:(b / 255.0) alpha:1.0])
+//创建随机颜色
+#define RandomColor (RGB(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256)))
+
+//判断系统版本
+//判断是否为iPhone
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+//判断是否为iPad
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//判断是否为ipod
+#define IS_IPOD ([[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"])
+//获取系统版本
+#define IOS_SYSTEM_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
+//判断 iOS 8 或更高的系统版本
+#define IOS_VERSION_8_OR_LATER (([[[UIDevice currentDevice] systemVersion] floatValue] >=8.0)? (YES):(NO))
+//判断机型
+#define isIphone4 [UIScreen mainScreen].bounds.size.height == 480
+#define isIphone5 [UIScreen mainScreen].bounds.size.height == 568
+#define isIphone6 [UIScreen mainScreen].bounds.size.height == 667
+#define isIphone6P [UIScreen mainScreen].bounds.size.height == 736
+
+//屏幕
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+
+//RGB颜色
+#define XTRGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define XTARGBAColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(r)/255.0 blue:(r)/255.0 alpha:a]
+
+//弱引用
+#define XTWeakSelf(type)  __weak typeof(type) weak##type = type;
+
+#endif /* HelpToolsPrefix_pch */
+
